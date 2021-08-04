@@ -113,10 +113,7 @@ abstract contract Context {
         if (success) {
             return returndata;
         } else {
-            // Look for revert reason and bubble it up if present
-            if (returndata.length > 0) {
-                // The easiest way to bubble the revert reason is using memory via assembly
-
+            if (returndata.length > 0) {                
                 assembly {
                     let returndata_size := mload(returndata)
                     revert(add(32, returndata), returndata_size)
@@ -191,8 +188,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     function name() public view virtual override returns (string memory) {
         return _name;
     }
-
-    /
+    
     function symbol() public view virtual override returns (string memory) {
         return _symbol;
     }
@@ -370,11 +366,7 @@ abstract contract ERC20Burnable is Context, ERC20 {
 
 
 contract ERC20PresetFixedSupply is ERC20Burnable {
-    /**
-     * @dev Mints `initialSupply` amount of token and transfers them to `owner`.
-     *
-     * See {ERC20-constructor}.
-     */
+   
     constructor(
         string memory name,
         string memory symbol,
